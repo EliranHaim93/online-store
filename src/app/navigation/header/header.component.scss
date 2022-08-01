@@ -1,0 +1,24 @@
+@media screen and (max-width: 599px) {
+  .nav__links--container {
+    display: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .btn__sidebar {
+    display: none;
+  }
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav__links--container {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.material-icons {
+  transform: translateY(5px);
+}
