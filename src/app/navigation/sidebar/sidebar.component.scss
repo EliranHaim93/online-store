@@ -1,4 +1,9 @@
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
   width: 10rem;
   height: 100vh;
   background-color: #dee2e6;

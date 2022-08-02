@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { sidebarComponent } from './navigation/sidebar/sidebar.component';
 import { HeaderComponent } from './navigation/header/header.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { StoreComponent } from './store/store.component';
 
 @NgModule({
-  declarations: [AppComponent, sidebarComponent, HeaderComponent],
+  declarations: [AppComponent, sidebarComponent, HeaderComponent, WelcomeComponent, StoreComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

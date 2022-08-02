@@ -1,0 +1,25 @@
+<ul class="product__list--container">
+  <li class="product__list" *ngFor="let product of filteredProducts">
+    <mat-card class="product">
+      <img
+        mat-card-image
+        src="../../assets/apple-small.jpg"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-header>
+        <mat-card-title>{{ product.companyName }}</mat-card-title>
+        <mat-card-subtitle>{{ product.productName }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+          obcaecati laudantium unde eius quae hic molestias iste.
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="product__action">
+        <span>{{ product.price }}$</span>
+        <button color="accent" mat-raised-button>Add to cart!</button>
+      </mat-card-actions>
+    </mat-card>
+  </li>
+</ul>
