@@ -8,3 +8,13 @@
   height: 100vh;
   background-color: #dee2e6;
 }
+.checkbox {
+  list-style: none;
+  align-self: flex-start;
+
+  margin: 0;
+}
+
+.checkbox li {
+  margin-bottom: 1rem;
+}
