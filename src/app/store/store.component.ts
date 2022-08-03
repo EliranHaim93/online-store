@@ -18,8 +18,8 @@ export class StoreComponent implements OnInit, OnDestroy {
   products2: Product[] = [];
 
   // filtered arrays
-  tempProducts: Product[] = [];
-  filteredProducts: Product[] = [];
+  tempProducts: any[] = [];
+  filteredProducts: any[] = [];
 
   constructor(
     private productsList: ProductsService,
@@ -58,6 +58,15 @@ export class StoreComponent implements OnInit, OnDestroy {
       this.tempProducts = this.products2.filter(
         (el: Product) => el.price <= 100
       );
+      this.products = [];
+      this.filteredProducts.push(this.tempProducts);
+      for (let i = 0; i < this.filteredProducts.length; i++) {
+        const array = this.filteredProducts[i];
+        for (let i = 0; i < array.length; i++) {
+          const obj = array[i];
+          this.products.push(obj);
+        }
+      }
     }
     if (isChecked && checkboxId === 2) {
       this.tempProducts = this.products2.filter(

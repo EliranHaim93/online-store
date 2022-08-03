@@ -14,12 +14,13 @@
 
   <h5>Rating</h5>
   <ul class="checkbox">
-    <li *ngFor="let ratingFilter of ratingFilters">
+    <li *ngFor="let ratingFilter of ratingFilters" class="raiting__item">
       <input
         type="{{ ratingFilter.type }}"
         (change)="onRatingChange(ratingFilter, $any($event.target).checked)"
       />
       {{ ratingFilter.stars }}
+      <span class="star">⭐</span>
     </li>
   </ul>
 </div>
