@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/shared/product-interface';
 import {
   PriceFilter,
   ProductsService,
@@ -21,15 +22,26 @@ export class sidebarComponent implements OnInit {
     this.getRatingFilters();
   }
 
-  onPriceChange(price: any, event: boolean) {}
-
-  onRatingChange(rating: any, event: boolean) {}
-
   getPriceFilters() {
     this.priceFilter = this.produtService.priceFilters;
   }
 
   getRatingFilters() {
     this.ratingFilter = this.produtService.ratingFilters;
+  }
+
+  onPriceChange(price: PriceFilter, event: boolean) {
+    if (event && price.id === 1) {
+      // this.produtService.productsList = [
+      //   ...this.produtService.productsList.filter((el) => {
+      //     return el.price <= 100;
+      //   }),
+      // ];
+    }
+    console.log(price, event);
+  }
+
+  onRatingChange(rating: RatingFilter, event: boolean) {
+    console.log(rating, event);
   }
 }

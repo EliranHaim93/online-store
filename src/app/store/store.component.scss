@@ -1,3 +1,19 @@
+.store__sort {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  margin: 2rem 1rem 0 5rem;
+  border: 2px solid #ced4da;
+  border-radius: 1rem;
+}
+.store__sort span {
+  padding-left: 1rem;
+}
+.store__sort--btn {
+  margin-right: 1rem;
+}
+
 .product__list--container {
   padding: 3rem 2rem;
   margin: 0;

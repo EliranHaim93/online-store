@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Product } from './product-interface';
 
 export interface PriceFilter {
   id: number;
@@ -16,7 +17,7 @@ export interface RatingFilter {
   providedIn: 'root',
 })
 export class ProductsService {
-  productService = [
+  productsList: Product[] = [
     {
       id: 1,
       companyName: 'Apple',

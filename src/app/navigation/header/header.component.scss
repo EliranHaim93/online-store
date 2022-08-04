@@ -14,11 +14,23 @@ a {
   color: #fff;
 }
 .toolbar {
-  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .nav__links--container {
   display: flex;
   align-items: center;
   margin-left: auto;
+}
+.nav__search-bar {
+  width: 50rem;
+  height: 1.5rem;
+  padding: 0 2rem;
+  margin-left: auto;
+  border-radius: 100px;
+}
+.nav__search-bar:focus {
+  outline: none;
+  border: 3px solid #ffd740;
 }

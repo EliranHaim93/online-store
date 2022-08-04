@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSidenavModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatRadioModule,
   ],
   exports: [
     MatIconModule,
@@ -28,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSidenavModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatRadioModule,
   ],
 })
 export class MaterialModule {}
