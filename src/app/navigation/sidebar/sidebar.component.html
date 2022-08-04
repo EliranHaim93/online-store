@@ -13,14 +13,23 @@
   </ul>
 
   <h5>Rating</h5>
-  <ul class="checkbox">
-    <li *ngFor="let ratingFilter of ratingFilter">
-      <input
+  <ul class="radio">
+    <li>
+      <!-- <input
         type="{{ ratingFilter.type }}"
         (change)="onRatingChange(ratingFilter)"
-      />
-      {{ ratingFilter.stars }}
-      <span class="star">⭐</span>
+      /> -->
+      <mat-radio-group aria-label="Select an option" class="radio__btns">
+        <mat-radio-button
+          *ngFor="let ratingFilter of ratingFilter"
+          value="{{ ratingFilter.id }}"
+          class="store__sort--btn"
+          (change)="onRatingChange(ratingFilter)"
+        >
+          {{ ratingFilter.stars }}
+          <span class="star">⭐</span>
+        </mat-radio-button>
+      </mat-radio-group>
     </li>
   </ul>
 </div>

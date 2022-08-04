@@ -7,8 +7,7 @@ export interface PriceFilter {
   type: string;
   price: string;
 }
-
-export interface RatingFilter {
+export interface ratingFilter {
   id: number;
   type: string;
   stars: number;
@@ -18,10 +17,10 @@ export interface RatingFilter {
   providedIn: 'root',
 })
 export class ProductsService {
-  ratingSubject$ = new Subject<RatingFilter[]>();
+  ratingSubject$ = new Subject<ratingFilter[] | number>();
   priceSubject$ = new Subject<PriceFilter[]>();
   price: PriceFilter[] = [];
-  rating: RatingFilter[] = [];
+  rating: ratingFilter[] | number = [];
 
   productsList: Product[] = [
     {
@@ -29,49 +28,49 @@ export class ProductsService {
       companyName: 'Apple',
       productName: 'Iphone X Max Pro',
       price: 999,
-      rating: 5,
+      stars: 5,
     },
     {
       id: 2,
       companyName: 'Apple',
       productName: 'Airpods Ultra',
       price: 350,
-      rating: 3,
+      stars: 3,
     },
     {
       id: 3,
       companyName: 'Apple',
       productName: 'Charger',
       price: 50,
-      rating: 4,
+      stars: 4,
     },
     {
       id: 4,
       companyName: 'JBL',
       productName: 'JBL GO BT Speaker',
       price: 80,
-      rating: 2,
+      stars: 2,
     },
     {
       id: 5,
       companyName: 'JBL',
       productName: 'JBL 5.1 SoundBar',
       price: 500,
-      rating: 5,
+      stars: 5,
     },
     {
       id: 6,
       companyName: 'Oneplus',
       productName: 'Type C Charger',
       price: 90,
-      rating: 1,
+      stars: 1,
     },
     {
       id: 7,
       companyName: 'Xiaomi',
       productName: 'Mi 6 Roborock',
       price: 150,
-      rating: 3,
+      stars: 3,
     },
   ];
 
@@ -88,20 +87,20 @@ export class ProductsService {
     },
   ];
 
-  ratingFilters: RatingFilter[] = [
+  ratingFilters: ratingFilter[] = [
     {
       id: 1,
-      type: 'checkbox',
+      type: 'radio',
       stars: 1,
     },
     {
       id: 2,
-      type: 'checkbox',
+      type: 'radio',
       stars: 3,
     },
     {
       id: 3,
-      type: 'checkbox',
+      type: 'radio',
       stars: 5,
     },
   ];
@@ -114,23 +113,6 @@ export class ProductsService {
 
   get priceFilters$() {
     return this.priceSubject$.asObservable();
-  }
-
-  setRatingFilter(filter: RatingFilter) {
-    // if element already chosen in price filters
-    const foundFilter = this.rating.find((p) => p.id === filter.id);
-
-    if (foundFilter) {
-      // if it is in price filters then find its index and remove it
-      const indexOf = this.rating.indexOf(foundFilter);
-      this.rating.splice(indexOf, 1);
-    } else {
-      // else, add it to price filters
-      this.rating.push(filter);
-    }
-
-    // push to subscriber (store)
-    this.ratingSubject$.next(this.rating.slice());
   }
 
   setPriceFilter(filter: PriceFilter) {
@@ -148,5 +130,26 @@ export class ProductsService {
 
     // push to subscriber (store)
     this.priceSubject$.next(this.price.slice());
+  }
+
+  setRatingFilter(filter: ratingFilter) {
+    // // if element already chosen in rating  filters
+    // const foundFilter = this.rating.find((p) => p.id === filter.id);
+
+    // if (foundFilter) {
+    //   // if it is in rating filters then find its index and remove it
+    //   const indexOf = this.rating.indexOf(foundFilter);
+    //   this.rating.splice(indexOf, 1);
+    // } else {
+    //   // else, add it to rating filters
+    //   this.rating.push(filter);
+    // }
+
+    // // push to subscriber (store)
+    // this.ratingSubject$.next(this.rating.slice());
+    // console.log(this.rating);
+
+    this.rating = filter.stars;
+    this.ratingSubject$.next(this.rating);
   }
 }

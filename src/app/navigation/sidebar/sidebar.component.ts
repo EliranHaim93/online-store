@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   PriceFilter,
+  ratingFilter,
   ProductsService,
-  RatingFilter,
 } from 'src/app/shared/products.service';
 
 @Component({
@@ -12,7 +12,7 @@ import {
 })
 export class sidebarComponent implements OnInit {
   priceFilter: PriceFilter[] = [];
-  ratingFilter: RatingFilter[] = [];
+  ratingFilter: ratingFilter[] = [];
 
   constructor(private productService: ProductsService) {}
 
@@ -33,7 +33,7 @@ export class sidebarComponent implements OnInit {
     this.productService.setPriceFilter(price);
   }
 
-  onRatingChange(rating: RatingFilter) {
+  onRatingChange(rating: ratingFilter) {
     this.productService.setRatingFilter(rating);
   }
 }

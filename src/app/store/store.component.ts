@@ -20,7 +20,11 @@ export class StoreComponent implements OnInit {
     });
 
     this.productsService.ratingFilters$.subscribe((filters) => {
-      // this.products.filter((product) => product.star <= filters);
+      const [stars] = [filters];
+      const filteredByRating = this.products.filter(
+        (product) => product.stars <= stars
+      );
+      console.log(filteredByRating);
     });
   }
 

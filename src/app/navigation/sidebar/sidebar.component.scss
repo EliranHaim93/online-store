@@ -11,8 +11,19 @@
 .checkbox {
   list-style: none;
   align-self: flex-start;
-
   margin: 0;
+}
+
+.radio {
+  list-style: none;
+  align-self: flex-start;
+  margin: 0;
+}
+
+.radio__btns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .checkbox li {
