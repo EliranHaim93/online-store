@@ -6,7 +6,7 @@
     <li *ngFor="let priceFilter of priceFilter">
       <input
         type="{{ priceFilter.type }}"
-        (change)="onPriceChange(priceFilter, $any($event.target).checked)"
+        (change)="onPriceChange(priceFilter)"
       />
       {{ priceFilter.price }}
     </li>
@@ -17,7 +17,7 @@
     <li *ngFor="let ratingFilter of ratingFilter">
       <input
         type="{{ ratingFilter.type }}"
-        (change)="onRatingChange(ratingFilter, $any($event.target).checked)"
+        (change)="onRatingChange(ratingFilter)"
       />
       {{ ratingFilter.stars }}
       <span class="star">⭐</span>

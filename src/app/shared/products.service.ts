@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Product } from './product-interface';
 
 export interface PriceFilter {
@@ -17,6 +18,11 @@ export interface RatingFilter {
   providedIn: 'root',
 })
 export class ProductsService {
+  ratingSubject$ = new Subject<RatingFilter[]>();
+  priceSubject$ = new Subject<PriceFilter[]>();
+  price: PriceFilter[] = [];
+  rating: RatingFilter[] = [];
+
   productsList: Product[] = [
     {
       id: 1,
@@ -99,5 +105,48 @@ export class ProductsService {
       stars: 5,
     },
   ];
+
   constructor() {}
+
+  get ratingFilters$() {
+    return this.ratingSubject$.asObservable();
+  }
+
+  get priceFilters$() {
+    return this.priceSubject$.asObservable();
+  }
+
+  setRatingFilter(filter: RatingFilter) {
+    // if element already chosen in price filters
+    const foundFilter = this.rating.find((p) => p.id === filter.id);
+
+    if (foundFilter) {
+      // if it is in price filters then find its index and remove it
+      const indexOf = this.rating.indexOf(foundFilter);
+      this.rating.splice(indexOf, 1);
+    } else {
+      // else, add it to price filters
+      this.rating.push(filter);
+    }
+
+    // push to subscriber (store)
+    this.ratingSubject$.next(this.rating.slice());
+  }
+
+  setPriceFilter(filter: PriceFilter) {
+    // if element already chosen in price filters
+    const foundFilter = this.price.find((p) => p.id === filter.id);
+
+    if (foundFilter) {
+      // if it is in price filters then find its index and remove it
+      const indexOf = this.price.indexOf(foundFilter);
+      this.price.splice(indexOf, 1);
+    } else {
+      // else, add it to price filters
+      this.price.push(filter);
+    }
+
+    // push to subscriber (store)
+    this.priceSubject$.next(this.price.slice());
+  }
 }

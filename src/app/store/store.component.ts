@@ -14,6 +14,14 @@ export class StoreComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+
+    this.productsService.priceFilters$.subscribe((filters) => {
+      // this.products.filter((product) => product.price <= filters);
+    });
+
+    this.productsService.ratingFilters$.subscribe((filters) => {
+      // this.products.filter((product) => product.star <= filters);
+    });
   }
 
   getProducts() {
