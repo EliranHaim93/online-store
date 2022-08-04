@@ -19,10 +19,6 @@ a {
 
 .nav__links--container {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
   margin-left: auto;
-}
-
-.material-icons {
-  transform: translateY(5px);
 }

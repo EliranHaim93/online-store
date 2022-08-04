@@ -14,7 +14,7 @@
 
   <h5>Rating</h5>
   <ul class="checkbox">
-    <li *ngFor="let ratingFilter of ratingFilters" class="raiting__item">
+    <li *ngFor="let ratingFilter of ratingFilters">
       <input
         type="{{ ratingFilter.type }}"
         (change)="onRatingChange(ratingFilter, $any($event.target).checked)"

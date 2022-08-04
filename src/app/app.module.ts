@@ -9,9 +9,10 @@ import { sidebarComponent } from './navigation/sidebar/sidebar.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { StoreComponent } from './store/store.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-  declarations: [AppComponent, sidebarComponent, HeaderComponent, WelcomeComponent, StoreComponent],
+  declarations: [AppComponent, sidebarComponent, HeaderComponent, WelcomeComponent, StoreComponent, CartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
