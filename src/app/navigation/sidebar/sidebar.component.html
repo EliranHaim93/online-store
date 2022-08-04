@@ -3,7 +3,7 @@
 
   <h5>Price</h5>
   <ul class="checkbox">
-    <li *ngFor="let priceFilter of priceFilters">
+    <li *ngFor="let priceFilter of priceFilter">
       <input
         type="{{ priceFilter.type }}"
         (change)="onPriceChange(priceFilter, $any($event.target).checked)"
@@ -14,7 +14,7 @@
 
   <h5>Rating</h5>
   <ul class="checkbox">
-    <li *ngFor="let ratingFilter of ratingFilters">
+    <li *ngFor="let ratingFilter of ratingFilter">
       <input
         type="{{ ratingFilter.type }}"
         (change)="onRatingChange(ratingFilter, $any($event.target).checked)"

@@ -8,18 +8,8 @@ import { StoreService } from './store.service';
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.scss'],
 })
-export class StoreComponent implements OnInit, OnDestroy {
-  private isPriceChecked: boolean = false;
-  private isRatingChecked: boolean = false;
-  private priceCheckboxId: number | null = null;
-  private ratingCheckboxId: number | null = null;
-
+export class StoreComponent implements OnInit {
   products: Product[] = [];
-  products2: Product[] = [];
-
-  // filtered arrays
-  tempProducts: any[] = [];
-  filteredProducts: any[] = [];
 
   constructor(
     private productsList: ProductsService,
@@ -28,70 +18,9 @@ export class StoreComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getProducts();
-
-    this.storeService.price.subscribe((priceData: any) => {
-      console.log(priceData);
-      this.isPriceChecked = priceData[1];
-      this.priceCheckboxId = priceData[0].id;
-    });
-
-    this.storeService.rating.subscribe((ratingData: any) => {
-      console.log(ratingData);
-      this.isRatingChecked = ratingData[1];
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.storeService.price.unsubscribe();
-    this.storeService.rating.unsubscribe();
   }
 
   getProducts() {
-    this.products = this.productsList.productService();
+    this.products = this.productsList.productService;
   }
-
-  filterProductsByPrice(
-    isChecked = this.isPriceChecked,
-    checkboxId = this.priceCheckboxId
-  ) {
-    if (isChecked && checkboxId === 1) {
-      this.tempProducts = this.products2.filter(
-        (el: Product) => el.price <= 100
-      );
-      this.products = [];
-      this.filteredProducts.push(this.tempProducts);
-      for (let i = 0; i < this.filteredProducts.length; i++) {
-        const array = this.filteredProducts[i];
-        for (let i = 0; i < array.length; i++) {
-          const obj = array[i];
-          this.products.push(obj);
-        }
-      }
-    }
-    if (isChecked && checkboxId === 2) {
-      this.tempProducts = this.products2.filter(
-        (el: Product) => el.price >= 200
-      );
-    }
-  }
-
-  //   filterProductsByRaring() {
-  //     if (this.isRatingChecked) {
-  //       if ((this.ratingCheckboxId = 1)) {
-  //         this.tempProducts = this.products2.filter((el: Product) => {
-  //           return el.rating === 1;
-  //         });
-  //       }
-  //       if ((this.ratingCheckboxId = 3)) {
-  //         this.tempProducts = this.products2.filter((el: Product) => {
-  //           return el.rating >= 3;
-  //         });
-  //       }
-  //       if ((this.ratingCheckboxId = 5)) {
-  //         this.tempProducts = this.products2.filter((el: Product) => {
-  //           return el.rating === 5;
-  //         });
-  //       }
-  //     }
-  //   }
 }

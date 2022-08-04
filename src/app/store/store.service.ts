@@ -6,8 +6,5 @@ import { ProductsService } from '../shared/products.service';
   providedIn: 'root',
 })
 export class StoreService {
-  price = new Subject();
-  rating = new Subject();
-
   constructor(private productService: ProductsService) {}
 }
