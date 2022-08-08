@@ -9,11 +9,14 @@ import { ProductsService } from '../shared/products.service';
 })
 export class StoreComponent implements OnInit {
   products: Product[] = [];
+  fileteredProducts: Product[] = [];
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
     this.getProducts();
+
+    this.fileteredProducts.push(...this.products);
 
     this.productsService.priceFilters$.subscribe((filters) => {
       // this.products.filter((product) => product.price <= filters);
@@ -21,12 +24,17 @@ export class StoreComponent implements OnInit {
 
     this.productsService.ratingFilters$.subscribe((filters) => {
       const [stars] = [filters];
-      const filteredByRating = this.products.filter(
+      const filteredByRating: Product[] = this.products.filter(
         (product) => product.stars <= stars
       );
-      console.log(filteredByRating);
+      this.fileteredProducts = [];
+      this.fileteredProducts.push(...filteredByRating);
+
+      console.log(this.fileteredProducts);
     });
   }
+  //TODO: now filteredbytating returns a correct arr of products that need to be displayed
+  //find a way do display it instead of "products" on change
 
   getProducts() {
     this.products = this.productsService.productsList;
