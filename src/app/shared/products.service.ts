@@ -5,7 +5,8 @@ import { Product } from './product-interface';
 export interface PriceFilter {
   id: number;
   type: string;
-  price: string;
+  priceLabel: string;
+  price: number;
 }
 export interface ratingFilter {
   id: number;
@@ -78,12 +79,14 @@ export class ProductsService {
     {
       id: 1,
       type: 'checkbox',
-      price: '< 100$',
+      priceLabel: '< 100$',
+      price: 100,
     },
     {
       id: 2,
       type: 'checkbox',
-      price: '> 200$',
+      priceLabel: '> 200$',
+      price: 200,
     },
   ];
 
@@ -133,22 +136,6 @@ export class ProductsService {
   }
 
   setRatingFilter(filter: ratingFilter) {
-    // // if element already chosen in rating  filters
-    // const foundFilter = this.rating.find((p) => p.id === filter.id);
-
-    // if (foundFilter) {
-    //   // if it is in rating filters then find its index and remove it
-    //   const indexOf = this.rating.indexOf(foundFilter);
-    //   this.rating.splice(indexOf, 1);
-    // } else {
-    //   // else, add it to rating filters
-    //   this.rating.push(filter);
-    // }
-
-    // // push to subscriber (store)
-    // this.ratingSubject$.next(this.rating.slice());
-    // console.log(this.rating);
-
     this.rating = filter.stars;
     this.ratingSubject$.next(this.rating);
   }

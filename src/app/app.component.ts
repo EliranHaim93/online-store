@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,6 @@ export class AppComponent {
   title = 'online-Store';
 
   constructor() {}
+
+  onToggle() {}
 }

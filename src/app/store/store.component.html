@@ -32,11 +32,36 @@
             obcaecati laudantium unde eius quae hic molestias iste.
           </p>
         </mat-card-content>
+
+        <input
+          type="number"
+          matInput
+          required
+          placeholder="-Select quantity-"
+          class="product__quantity-selector"
+          [formControl]="quantity"
+          min="0"
+          max="10"
+        />
+
         <mat-card-actions class="product__action">
           <span>{{ product.price }}$</span>
-          <button color="accent" mat-raised-button>Add to cart!</button>
+          <button
+            color="accent"
+            mat-raised-button
+            (click)="onClick(product.companyName, product.productName)"
+            [disabled]="quantity.invalid"
+          >
+            Add to cart!
+          </button>
         </mat-card-actions>
       </mat-card>
     </li>
   </ul>
+
+  <br />
+  <div>quantity.valid= {{ quantity.valid }}</div>
+  <div>quantity.invalid = {{ quantity.invalid }}</div>
+  <div>quantity.status = {{ quantity.status }}</div>
+  <div>quantity.disabled = {{ quantity.disabled }}</div>
 </div>
