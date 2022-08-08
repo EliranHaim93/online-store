@@ -14,10 +14,12 @@ export class StoreComponent implements OnInit {
   products: Product[] = [];
   fileteredProducts: Product[] = [];
 
-  quantity = new FormControl('', [
-    Validators.required,
-    Validators.minLength(1),
-  ]);
+  selectToCart = new FormGroup({
+    quantity: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
+  });
 
   constructor(
     private productsService: ProductsService,
@@ -66,7 +68,7 @@ export class StoreComponent implements OnInit {
 
   onClick(companyName: string, productName: string) {
     const cartItem = {
-      quantity: this.quantity.value,
+      quantity: this.selectToCart.get('quantity')?.value,
       companyName: companyName,
       productName: productName,
     };

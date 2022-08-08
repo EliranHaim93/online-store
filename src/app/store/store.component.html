@@ -1,4 +1,4 @@
-<div class="store__container">
+<div [formGroup]="selectToCart" class="store__container">
   <div class="store__sort">
     <span>Sort By:</span>
     <mat-radio-group aria-label="Select an option">
@@ -33,16 +33,17 @@
           </p>
         </mat-card-content>
 
-        <input
-          type="number"
-          matInput
-          required
-          placeholder="-Select quantity-"
-          class="product__quantity-selector"
-          [formControl]="quantity"
-          min="0"
-          max="10"
-        />
+        <mat-form-field>
+          <input
+            type="number"
+            matInput
+            required
+            placeholder="-Select quantity-"
+            formControlName="quantity"
+            min="0"
+            max="10"
+          />
+        </mat-form-field>
 
         <mat-card-actions class="product__action">
           <span>{{ product.price }}$</span>
@@ -50,7 +51,7 @@
             color="accent"
             mat-raised-button
             (click)="onClick(product.companyName, product.productName)"
-            [disabled]="quantity.invalid"
+            [disabled]="selectToCart.invalid"
           >
             Add to cart!
           </button>
@@ -60,8 +61,7 @@
   </ul>
 
   <br />
-  <div>quantity.valid= {{ quantity.valid }}</div>
-  <div>quantity.invalid = {{ quantity.invalid }}</div>
-  <div>quantity.status = {{ quantity.status }}</div>
-  <div>quantity.disabled = {{ quantity.disabled }}</div>
+  <div>quantity.valid = {{ selectToCart.valid }}</div>
+  <div>quantity.invalid = {{ selectToCart.invalid }}</div>
+  <div>quantity.status = {{ selectToCart.status }}</div>
 </div>
