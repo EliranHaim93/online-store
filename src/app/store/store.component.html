@@ -1,5 +1,5 @@
-<div [formGroup]="selectToCart" class="store__container">
-  <div class="store__sort">
+<div class="store__container">
+  <!-- <div class="store__sort">
     <span>Sort By:</span>
     <mat-radio-group aria-label="Select an option">
       <mat-radio-button value="1" class="store__sort--btn" checked="checked"
@@ -12,9 +12,9 @@
         >Price</mat-radio-button
       >
     </mat-radio-group>
-  </div>
+  </div> -->
   <ul class="product__list--container">
-    <li class="product__list" *ngFor="let product of fileteredProducts">
+    <li class="product__list" *ngFor="let product of filteredProducts">
       <mat-card class="product">
         <img
           mat-card-image
@@ -33,29 +33,35 @@
           </p>
         </mat-card-content>
 
-        <mat-form-field>
-          <input
-            type="number"
-            matInput
-            required
-            placeholder="-Select quantity-"
-            formControlName="quantity"
-            min="0"
-            max="10"
-          />
-        </mat-form-field>
+        <form [formGroup]="selectToCart">
+          <mat-form-field>
+            <mat-label>-Select quantity-</mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder="between 1-10"
+              formControlName="quantity"
+              min="0"
+              max="10"
+            />
+          </mat-form-field>
 
-        <mat-card-actions class="product__action">
-          <span>{{ product.price }}$</span>
-          <button
-            color="accent"
-            mat-raised-button
-            (click)="onClick(product.companyName, product.productName)"
-            [disabled]="selectToCart.invalid"
-          >
-            Add to cart!
-          </button>
-        </mat-card-actions>
+          <mat-card-actions class="product__action">
+            <span>{{ product.price }}$</span>
+            <button
+              type="submit"
+              color="accent"
+              mat-raised-button
+              (click)="onSubmit(product.companyName, product.productName)"
+              [disabled]="
+                selectToCart.controls['quantity'].invalid ||
+                selectToCart.controls['quantity'].value === 0
+              "
+            >
+              Add to cart!
+            </button>
+          </mat-card-actions>
+        </form>
       </mat-card>
     </li>
   </ul>

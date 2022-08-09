@@ -12,7 +12,7 @@ import { StoreService } from './store.service';
 })
 export class StoreComponent implements OnInit {
   products: Product[] = [];
-  fileteredProducts: Product[] = [];
+  filteredProducts: Product[] = [];
 
   selectToCart = new FormGroup({
     quantity: new FormControl('', [
@@ -29,7 +29,7 @@ export class StoreComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
 
-    this.fileteredProducts.push(...this.products);
+    this.filteredProducts.push(...this.products);
 
     this.productsService.priceFilters$.subscribe((filters) => {
       const filter = filters.map((filter) => filter.id);
@@ -47,8 +47,8 @@ export class StoreComponent implements OnInit {
       }
 
       if (filteredByPrice.length) {
-        this.fileteredProducts = [];
-        this.fileteredProducts.push(...filteredByPrice);
+        this.filteredProducts = [];
+        this.filteredProducts.push(...filteredByPrice);
       }
     });
 
@@ -57,8 +57,8 @@ export class StoreComponent implements OnInit {
       const filteredByRating: Product[] = this.products.filter(
         (product) => product.stars <= stars
       );
-      this.fileteredProducts = [];
-      this.fileteredProducts.push(...filteredByRating);
+      this.filteredProducts = [];
+      this.filteredProducts.push(...filteredByRating);
     });
   }
 
@@ -66,7 +66,7 @@ export class StoreComponent implements OnInit {
     this.products = this.productsService.productsList;
   }
 
-  onClick(companyName: string, productName: string) {
+  onSubmit(companyName: string, productName: string) {
     const cartItem = {
       quantity: this.selectToCart.get('quantity')?.value,
       companyName: companyName,
